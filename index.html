@@ -262,6 +262,7 @@
   <p>Autobase &copy; 2026 — База знаний об автомобилях и моторах</p>
 </footer>
 <script src="brands.js"></script>
+<script src="brand-logos.js"></script>
 <script>
 // Все марки с логотипами (Simple Icons CDN) и странами
 // Показ марок в сетке (первые 12 известных с логотипами)
@@ -275,16 +276,21 @@ ALL_BRANDS
   if (b.page) card.href = b.page;
   card.className = 'brand-card';
   card.innerHTML = b.logo
-    ? '<img src="' + b.logo + '/ffffff" alt="' + b.name + '" width="48" height="32" loading="lazy"><h3>' + b.name + '</h3><p>' + b.country + '</p>'
-    : '<div style="height:32px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:800;color:var(--color-text-faint);">' + b.name[0] + '</div><h3>' + b.name + '</h3><p>' + b.country + '</p>';
-  grid.appendChild(card);
-  });
-// DROPDOWN логика
+  
 const input = document.getElementById('searchInput');
 const dropdown = document.getElementById('dropdown');
 let selectedIdx = -1;
 let filtered = [];
-
+const logoUrl = BRAND_LOGOS && BRAND_LOGOS[b.name] ? BRAND_LOGOS[b.name] : null;
+card.innerHTML = logoUrl
+  ? '<img src="' + logoUrl + '" alt="' + b.name + '" width="48" height="32" loading="lazy">' +
+    '<h3>' + b.name + '</h3>' +
+    '<p>' + b.country + '</p>'
+  : '<div style="height:32px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:700;color:#666;">' +
+      b.name.charAt(0) +
+    '</div>' +
+    '<h3>' + b.name + '</h3>' +
+    '<p>' + b.country + '</p>';
 function buildDropdown(query) {
   query = query.trim().toLowerCase();
   dropdown.innerHTML = '';
