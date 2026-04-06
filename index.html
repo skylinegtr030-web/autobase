@@ -261,83 +261,9 @@
 <footer>
   <p>Autobase &copy; 2026 — База знаний об автомобилях и моторах</p>
 </footer>
-
+<script src="brands.js"></script>
 <script>
 // Все марки с логотипами (Simple Icons CDN) и странами
-const ALL_BRANDS = [
-  // Россия
-  { name: "Lada (ВАЗ)", country: "Россия", logo: "https://cdn.simpleicons.org/lada", page: "lada.html", region: "Россия/СНГ" },
-  { name: "УАЗ", country: "Россия", logo: "", page: null, region: "Россия/СНГ" },
-  { name: "ГАЗ", country: "Россия", logo: "", page: null, region: "Россия/СНГ" },
-  { name: "Москвич", country: "Россия", logo: "", page: null, region: "Россия/СНГ" },
-  // Германия
-  { name: "BMW", country: "Германия", logo: "https://cdn.simpleicons.org/bmw", page: null, region: "Германия" },
-  { name: "Mercedes-Benz", country: "Германия", logo: "https://cdn.simpleicons.org/mercedes", page: null, region: "Германия" },
-  { name: "Audi", country: "Германия", logo: "https://cdn.simpleicons.org/audi", page: null, region: "Германия" },
-  { name: "Volkswagen", country: "Германия", logo: "https://cdn.simpleicons.org/volkswagen", page: null, region: "Германия" },
-  { name: "Porsche", country: "Германия", logo: "https://cdn.simpleicons.org/porsche", page: null, region: "Германия" },
-  { name: "Opel", country: "Германия", logo: "https://cdn.simpleicons.org/opel", page: null, region: "Германия" },
-  // Япония
-  { name: "Toyota", country: "Япония", logo: "https://cdn.simpleicons.org/toyota", page: null, region: "Япония" },
-  { name: "Honda", country: "Япония", logo: "https://cdn.simpleicons.org/honda", page: null, region: "Япония" },
-  { name: "Nissan", country: "Япония", logo: "https://cdn.simpleicons.org/nissan", page: null, region: "Япония" },
-  { name: "Mazda", country: "Япония", logo: "https://cdn.simpleicons.org/mazda", page: null, region: "Япония" },
-  { name: "Mitsubishi", country: "Япония", logo: "https://cdn.simpleicons.org/mitsubishi", page: null, region: "Япония" },
-  { name: "Subaru", country: "Япония", logo: "https://cdn.simpleicons.org/subaru", page: null, region: "Япония" },
-  { name: "Suzuki", country: "Япония", logo: "https://cdn.simpleicons.org/suzuki", page: null, region: "Япония" },
-  { name: "Lexus", country: "Япония", logo: "https://cdn.simpleicons.org/lexus", page: null, region: "Япония" },
-  { name: "Infiniti", country: "Япония", logo: "", page: null, region: "Япония" },
-  { name: "Acura", country: "Япония", logo: "", page: null, region: "Япония" },
-  { name: "Daihatsu", country: "Япония", logo: "", page: null, region: "Япония" },
-  { name: "Isuzu", country: "Япония", logo: "", page: null, region: "Япония" },
-  // Корея
-  { name: "Hyundai", country: "Корея", logo: "https://cdn.simpleicons.org/hyundai", page: null, region: "Корея" },
-  { name: "Kia", country: "Корея", logo: "https://cdn.simpleicons.org/kia", page: null, region: "Корея" },
-  { name: "Genesis", country: "Корея", logo: "", page: null, region: "Корея" },
-  { name: "SsangYong", country: "Корея", logo: "", page: null, region: "Корея" },
-  { name: "Daewoo", country: "Корея", logo: "", page: null, region: "Корея" },
-  // Китай
-  { name: "Chery", country: "Китай", logo: "", page: null, region: "Китай" },
-  { name: "Geely", country: "Китай", logo: "https://cdn.simpleicons.org/geely", page: null, region: "Китай" },
-  { name: "Haval", country: "Китай", logo: "", page: null, region: "Китай" },
-  { name: "BYD", country: "Китай", logo: "https://cdn.simpleicons.org/byd", page: null, region: "Китай" },
-  { name: "Great Wall", country: "Китай", logo: "", page: null, region: "Китай" },
-  { name: "JAC", country: "Китай", logo: "", page: null, region: "Китай" },
-  { name: "Changan", country: "Китай", logo: "", page: null, region: "Китай" },
-  { name: "DFSK / Dongfeng", country: "Китай", logo: "", page: null, region: "Китай" },
-  { name: "Exeed", country: "Китай", logo: "", page: null, region: "Китай" },
-  { name: "Omoda", country: "Китай", logo: "", page: null, region: "Китай" },
-  // Швеция
-  { name: "Volvo", country: "Швеция", logo: "https://cdn.simpleicons.org/volvo", page: null, region: "Швеция/Франция" },
-  { name: "Saab", country: "Швеция", logo: "", page: null, region: "Швеция/Франция" },
-  // Франция
-  { name: "Renault", country: "Франция", logo: "https://cdn.simpleicons.org/renault", page: null, region: "Швеция/Франция" },
-  { name: "Peugeot", country: "Франция", logo: "https://cdn.simpleicons.org/peugeot", page: null, region: "Швеция/Франция" },
-  { name: "Citroën", country: "Франция", logo: "https://cdn.simpleicons.org/citroen", page: null, region: "Швеция/Франция" },
-  // США
-  { name: "Ford", country: "США", logo: "https://cdn.simpleicons.org/ford", page: null, region: "США" },
-  { name: "Chevrolet", country: "США", logo: "https://cdn.simpleicons.org/chevrolet", page: null, region: "США" },
-  { name: "Jeep", country: "США", logo: "https://cdn.simpleicons.org/jeep", page: null, region: "США" },
-  { name: "Dodge", country: "США", logo: "https://cdn.simpleicons.org/dodge", page: null, region: "США" },
-  { name: "Cadillac", country: "США", logo: "https://cdn.simpleicons.org/cadillac", page: null, region: "США" },
-  { name: "Buick", country: "США", logo: "", page: null, region: "США" },
-  { name: "Tesla", country: "США", logo: "https://cdn.simpleicons.org/tesla", page: null, region: "США" },
-  { name: "Lincoln", country: "США", logo: "", page: null, region: "США" },
-  // Великобритания
-  { name: "Land Rover", country: "Великобритания", logo: "https://cdn.simpleicons.org/landrover", page: null, region: "Великобритания" },
-  { name: "Jaguar", country: "Великобритания", logo: "https://cdn.simpleicons.org/jaguar", page: null, region: "Великобритания" },
-  { name: "Range Rover", country: "Великобритания", logo: "", page: null, region: "Великобритания" },
-  { name: "MINI", country: "Великобритания", logo: "https://cdn.simpleicons.org/mini", page: null, region: "Великобритания" },
-  { name: "Rolls-Royce", country: "Великобритания", logo: "", page: null, region: "Великобритания" },
-  { name: "Bentley", country: "Великобритания", logo: "", page: null, region: "Великобритания" },
-  // Италия
-  { name: "Fiat", country: "Италия", logo: "https://cdn.simpleicons.org/fiat", page: null, region: "Италия" },
-  { name: "Alfa Romeo", country: "Италия", logo: "https://cdn.simpleicons.org/alfaromeo", page: null, region: "Италия" },
-  { name: "Ferrari", country: "Италия", logo: "https://cdn.simpleicons.org/ferrari", page: null, region: "Италия" },
-  { name: "Lamborghini", country: "Италия", logo: "https://cdn.simpleicons.org/lamborghini", page: null, region: "Италия" },
-  { name: "Maserati", country: "Италия", logo: "https://cdn.simpleicons.org/maserati", page: null, region: "Италия" },
-];
-
 // Показ марок в сетке (первые 12 известных с логотипами)
 const FEATURED = ["Lada (ВАЗ)","BMW","Mercedes-Benz","Audi","Volkswagen","Toyota","Volvo","Hyundai","Kia","Chery","Ford","Subaru"];
 const grid = document.getElementById('brandsGrid');
