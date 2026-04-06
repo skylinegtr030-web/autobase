@@ -274,19 +274,20 @@ ALL_BRANDS
   .forEach(b => {
   const card = document.createElement(b.page ? 'a' : 'div');
   if (b.page) card.href = b.page;
+      const logoUrl = BRAND_LOGOS && BRAND_LOGOS[b.name] ? BRAND_LOGOS[b.name] : null;
+
+    card.innerHTML = logoUrl
+      ? '<img src="' + logoUrl + '" alt="' + b.name + '" width="48" height="32" loading="lazy">' +
+        '<h3>' + b.name + '</h3>' +
+        '<p>' + b.country + '</p>'
+      : '<div style="height:32px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:700;color:#666;">' +
+          b.name.charAt(0) +
+        '</div>' +
+        '<h3>' + b.name + '</h3>' +
+        '<p>' + b.country + '</p>';
   card.className = 'brand-card';
-  card.innerHTML = b.logo
-  
-const input = document.getElementById('searchInput');
-const dropdown = document.getElementById('dropdown');
-let selectedIdx = -1;
-let filtered = [];
-const logoUrl = BRAND_LOGOS && BRAND_LOGOS[b.name] ? BRAND_LOGOS[b.name] : null;
-card.innerHTML = logoUrl
-  ? '<img src="' + logoUrl + '" alt="' + b.name + '" width="48" height="32" loading="lazy">' +
-    '<h3>' + b.name + '</h3>' +
-    '<p>' + b.country + '</p>'
-  : '<div style="height:32px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:700;color:#666;">' +
+  grid.appendChild(card);
+});
       b.name.charAt(0) +
     '</div>' +
     '<h3>' + b.name + '</h3>' +
