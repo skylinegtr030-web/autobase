@@ -1,47 +1,188 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Autobase — История автомобилей</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',sans-serif;background:#0f0f0f;color:#e0e0e0}
-a{color:inherit;text-decoration:none}
-header{display:flex;align-items:center;justify-content:space-between;padding:20px 60px;background:#161616;border-bottom:1px solid #2a2a2a;position:sticky;top:0;z-index:100}
-.logo{font-size:24px;font-weight:800;color:#fff;letter-spacing:-1px}span.accent{color:#e63946}
-nav a{margin-left:30px;color:#aaa;font-size:14px;transition:.2s}nav a:hover{color:#fff}
-.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px;text-align:center;background:linear-gradient(180deg,#161616 0%,#0f0f0f 100%)}
-.hero h1{font-size:52px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
-.hero p{font-size:18px;color:#888;margin-bottom:40px;max-width:560px}
-.search-box{display:flex;gap:12px;width:100%;max-width:600px}
-.search-box input{flex:1;padding:16px 24px;font-size:16px;border-radius:12px;border:2px solid #2a2a2a;background:#1a1a1a;color:#fff;outline:none;transition:.2s}
-.search-box input:focus{border-color:#e63946}
-.search-box button{padding:16px 28px;background:#e63946;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s}
-.search-box button:hover{background:#c1121f}
-.hints{margin-top:14px;font-size:13px;color:#555}
-.section{padding:60px}
-.section-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:30px;padding-bottom:12px;border-bottom:1px solid #2a2a2a}
-.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
-.brand-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:.2s}
-.brand-card:hover{border-color:#e63946;transform:translateY(-2px)}
-.brand-card img{width:60px;height:60px;object-fit:contain;margin-bottom:12px;filter:brightness(0.9)}
-.brand-card h3{font-size:16px;font-weight:700;color:#fff}
-.brand-card p{font-size:12px;color:#666;margin-top:4px}
-.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.article-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s}
-.article-card:hover{border-color:#e63946;transform:translateY(-2px)}
-.article-card img{width:100%;height:160px;object-fit:cover}
-.article-card-body{padding:18px}
-.article-card-body h3{font-size:17px;font-weight:700;color:#fff;margin-bottom:6px}
-.article-card-body p{font-size:13px;color:#666;line-height:1.5}
-.tag{display:inline-block;padding:3px 10px;background:#2a2a2a;border-radius:20px;font-size:11px;color:#888;margin-top:10px}
-footer{padding:40px 60px;border-top:1px solid #2a2a2a;text-align:center;color:#444;font-size:13px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autobase — База знаний об автомобилях</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+      --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem;
+      --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --radius-sm: 0.375rem; --radius-md: 0.5rem;
+      --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-full: 9999px;
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    [data-theme="dark"] {
+      --color-bg: #111110;
+      --color-surface: #1a1918;
+      --color-surface-2: #1f1e1c;
+      --color-surface-offset: #252320;
+      --color-border: #333230;
+      --color-divider: #2a2927;
+      --color-text: #e8e6e3;
+      --color-text-muted: #8a8885;
+      --color-text-faint: #55534f;
+      --color-primary: #e63946;
+      --color-primary-hover: #c1121f;
+      --color-primary-highlight: #3a1a1c;
+      --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.3);
+      --shadow-md: 0 4px 12px oklch(0 0 0 / 0.4);
+      --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.5);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { min-height: 100dvh; font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text); background: var(--color-bg); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    /* HEADER */
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-4) var(--space-8);
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky; top: 0; z-index: 200;
+    }
+    .logo { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--color-text); letter-spacing: -0.5px; }
+    .logo span { color: var(--color-primary); }
+    nav { display: flex; align-items: center; gap: var(--space-6); }
+    nav a { font-size: var(--text-sm); color: var(--color-text-muted); transition: color var(--transition-interactive); }
+    nav a:hover { color: var(--color-text); }
+
+    /* HERO */
+    .hero {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: clamp(var(--space-12), 8vw, var(--space-16)) var(--space-4);
+      text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, oklch(from var(--color-primary) l c h / 0.08) 0%, transparent 70%);
+    }
+    .hero-eyebrow { font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: var(--space-4); }
+    .hero h1 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; color: var(--color-text); line-height: 1.05; margin-bottom: var(--space-4); max-width: 700px; }
+    .hero h1 em { font-style: normal; color: var(--color-primary); }
+    .hero p { font-size: var(--text-base); color: var(--color-text-muted); margin-bottom: var(--space-8); max-width: 520px; }
+
+    /* SEARCH BLOCK */
+    .search-wrap { position: relative; width: 100%; max-width: 620px; }
+    .search-row { display: flex; gap: var(--space-2); }
+    .search-input-wrap { position: relative; flex: 1; }
+    .search-icon { position: absolute; left: var(--space-4); top: 50%; transform: translateY(-50%); color: var(--color-text-faint); pointer-events: none; width: 18px; height: 18px; }
+    #searchInput {
+      width: 100%; padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 26px);
+      font-size: var(--text-base); font-family: var(--font-body);
+      border-radius: var(--radius-lg); border: 1.5px solid var(--color-border);
+      background: var(--color-surface-2); color: var(--color-text);
+      outline: none; transition: border-color var(--transition-interactive), box-shadow var(--transition-interactive);
+    }
+    #searchInput::placeholder { color: var(--color-text-faint); }
+    #searchInput:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px oklch(from var(--color-primary) l c h / 0.15); }
+    .search-btn {
+      padding: var(--space-4) var(--space-6);
+      background: var(--color-primary); color: #fff;
+      border: none; border-radius: var(--radius-lg);
+      font-size: var(--text-sm); font-weight: 700; cursor: pointer;
+      transition: background var(--transition-interactive), transform var(--transition-interactive);
+      white-space: nowrap;
+    }
+    .search-btn:hover { background: var(--color-primary-hover); }
+    .search-btn:active { transform: scale(0.97); }
+
+    /* DROPDOWN */
+    #dropdown {
+      position: absolute; top: calc(100% + var(--space-2)); left: 0; right: 0;
+      background: var(--color-surface-2);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      max-height: 380px; overflow-y: auto;
+      z-index: 300;
+      display: none;
+    }
+    #dropdown.visible { display: block; }
+    .dropdown-group-label {
+      padding: var(--space-2) var(--space-4) var(--space-1);
+      font-size: var(--text-xs); color: var(--color-text-faint);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      border-top: 1px solid var(--color-divider);
+    }
+    .dropdown-group-label:first-child { border-top: none; }
+    .dropdown-item {
+      display: flex; align-items: center; gap: var(--space-3);
+      padding: var(--space-2) var(--space-4);
+      cursor: pointer;
+      transition: background var(--transition-interactive);
+      border-radius: 0;
+    }
+    .dropdown-item:hover, .dropdown-item.active { background: var(--color-surface-offset); }
+    .dropdown-item img { width: 28px; height: 20px; object-fit: contain; filter: brightness(0.85); }
+    .dropdown-item span { font-size: var(--text-sm); color: var(--color-text); }
+    .dropdown-item small { font-size: var(--text-xs); color: var(--color-text-faint); margin-left: auto; }
+    .dropdown-no-results { padding: var(--space-4); text-align: center; color: var(--color-text-muted); font-size: var(--text-sm); }
+
+    /* BRANDS SECTION */
+    .section { padding: clamp(var(--space-8), 5vw, var(--space-12)) clamp(var(--space-4), 5vw, var(--space-8)); }
+    .section-header { display: flex; align-items: baseline; gap: var(--space-4); margin-bottom: var(--space-6); }
+    .section-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-text); }
+    .section-count { font-size: var(--text-xs); color: var(--color-text-faint); }
+    .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--space-3); }
+    .brand-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-4) var(--space-3);
+      text-align: center; cursor: pointer;
+      transition: border-color var(--transition-interactive), transform var(--transition-interactive), box-shadow var(--transition-interactive);
+    }
+    .brand-card:hover { border-color: var(--color-primary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .brand-card img { width: 48px; height: 32px; object-fit: contain; margin: 0 auto var(--space-2); filter: brightness(0.85); }
+    .brand-card h3 { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
+    .brand-card p { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-1); }
+
+    /* POPULAR ARTICLES */
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-4); }
+    .article-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden; cursor: pointer;
+      transition: border-color var(--transition-interactive), transform var(--transition-interactive);
+    }
+    .article-card:hover { border-color: var(--color-primary); transform: translateY(-2px); }
+    .article-card img { width: 100%; height: 150px; object-fit: cover; }
+    .article-body { padding: var(--space-4); }
+    .article-body h3 { font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-2); }
+    .article-body p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.5; }
+    .article-tag { display: inline-block; padding: 2px 10px; background: var(--color-surface-offset); border-radius: var(--radius-full); font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-3); }
+
+    footer { padding: var(--space-8); border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-faint); font-size: var(--text-sm); }
+
+    /* SCROLLBAR */
+    #dropdown::-webkit-scrollbar { width: 6px; }
+    #dropdown::-webkit-scrollbar-track { background: transparent; }
+    #dropdown::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: var(--radius-full); }
+
+    @media (max-width: 600px) {
+      header { padding: var(--space-3) var(--space-4); }
+      nav a { display: none; }
+      .search-row { flex-direction: column; }
+      .search-btn { width: 100%; }
+    }
+  </style>
 </head>
 <body>
 <header>
-  <div class="logo">Auto<span class="accent">base</span></div>
+  <div class="logo">Auto<span>base</span></div>
   <nav>
     <a href="index.html">Главная</a>
     <a href="#brands">Марки</a>
@@ -49,102 +190,272 @@ footer{padding:40px 60px;border-top:1px solid #2a2a2a;text-align:center;color:#4
     <a href="#">О проекте</a>
   </nav>
 </header>
+
 <section class="hero">
-  <h1>История каждого<br>автомобиля</h1>
-  <p>Найди статью по нужной машине — история, поколения, моторы, болячки и обслуживание</p>
-  <div class="search-box">
-    <input type="text" placeholder="Например: Lada Niva, BMW E39, Volvo XC70..." id="searchInput">
-    <button onclick="doSearch()">Найти</button>
+  <p class="hero-eyebrow">База знаний об автомобилях</p>
+  <h1>Все о любой <em>марке</em> и <em>модели</em></h1>
+  <p>История, моторы, болячки, обслуживание и запчасти — всё в одном месте</p>
+
+  <div class="search-wrap">
+    <div class="search-row">
+      <div class="search-input-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Введи марку или модель: Toyota, BMW E39, Lada Niva…" autocomplete="off">
+        <div id="dropdown"></div>
+      </div>
+      <button class="search-btn" onclick="doSearch()">Найти</button>
+    </div>
   </div>
-  <p class="hints">Примеры: Lada Vesta, BMW E39, Volvo XC70, Mercedes W211</p>
 </section>
+
 <section class="section" id="brands">
-  <div class="section-title">Марки автомобилей</div>
-  <div class="brands-grid">
-    <a href="lada.html" class="brand-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Lada_logo.svg/200px-Lada_logo.svg.png" alt="Lada">
-      <h3>Lada</h3>
-      <p>АвтоВАЗ · Россия</p>
-    </a>
-    <div class="brand-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/200px-BMW.svg.png" alt="BMW">
-      <h3>BMW</h3>
-      <p>Bayerische · Германия</p>
-    </div>
-    <div class="brand-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Volvo-Iron-Mark.svg/200px-Volvo-Iron-Mark.svg.png" alt="Volvo">
-      <h3>Volvo</h3>
-      <p>Volvo Cars · Швеция</p>
-    </div>
-    <div class="brand-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/200px-Mercedes-Logo.svg.png" alt="Mercedes">
-      <h3>Mercedes-Benz</h3>
-      <p>Daimler · Германия</p>
-    </div>
-    <div class="brand-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/200px-Audi-Logo_2016.svg.png" alt="Audi">
-      <h3>Audi</h3>
-      <p>Volkswagen Group · Германия</p>
-    </div>
-    <div class="brand-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Toyota_loho.svg/200px-Toyota_loho.svg.png" alt="Toyota">
-      <h3>Toyota</h3>
-      <p>Toyota Motor · Япония</p>
-    </div>
+  <div class="section-header">
+    <div class="section-title">Марки автомобилей</div>
+    <div class="section-count">все марки в алфавитном порядке</div>
   </div>
+  <div class="brands-grid" id="brandsGrid"></div>
 </section>
+
 <section class="section" id="popular">
-  <div class="section-title">Популярные статьи</div>
+  <div class="section-header">
+    <div class="section-title">Популярные статьи</div>
+  </div>
   <div class="articles-grid">
     <a href="lada.html" class="article-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/2021_Lada_Niva_Legend_3-door_%28facelift%2C_Russia%29%2C_front_8.21.40.jpg/320px-2021_Lada_Niva_Legend_3-door_%28facelift%2C_Russia%29%2C_front_8.21.40.jpg" alt="Lada Niva">
-      <div class="article-card-body">
-        <h3>Lada Niva</h3>
-        <p>Легендарный советский внедорожник, покоривший весь мир</p>
-        <span class="tag">Lada</span>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/2021_Lada_Niva_Legend_3-door_%28facelift%2C_Russia%29%2C_front_8.21.40.jpg/320px-2021_Lada_Niva_Legend_3-door_%28facelift%2C_Russia%29%2C_front_8.21.40.jpg" alt="Lada Niva" loading="lazy" width="320" height="150">
+      <div class="article-body">
+        <h3>Lada Niva / 4x4</h3>
+        <p>Легендарный советский внедорожник с постоянным полным приводом</p>
+        <span class="article-tag">Lada</span>
       </div>
     </a>
     <div class="article-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/2004_BMW_530i_%28E60%29_sedan_%282015-08-10%29_01.jpg/320px-2004_BMW_530i_%28E60%29_sedan_%282015-08-10%29_01.jpg" alt="BMW E39">
-      <div class="article-card-body">
-        <h3>BMW 5 Series E39</h3>
-        <p>Один из лучших BMW в истории — элегантность и надёжность</p>
-        <span class="tag">BMW</span>
-      </div>
-    </div>
-    <div class="article-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Volvo_XC70_%282008%29_001.jpg/320px-Volvo_XC70_%282008%29_001.jpg" alt="Volvo XC70">
-      <div class="article-card-body">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Volvo_XC70_%282008%29_001.jpg/320px-Volvo_XC70_%282008%29_001.jpg" alt="Volvo XC70" loading="lazy" width="320" height="150">
+      <div class="article-body">
         <h3>Volvo XC70</h3>
-        <p>Универсал повышенной проходимости из Швеции</p>
-        <span class="tag">Volvo</span>
+        <p>Шведский универсал повышенной проходимости с мотором B5254T</p>
+        <span class="article-tag">Volvo</span>
       </div>
     </div>
     <div class="article-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Lada_Vesta_SW_Cross.jpg/320px-Lada_Vesta_SW_Cross.jpg" alt="Lada Vesta">
-      <div class="article-card-body">
-        <h3>Lada Vesta</h3>
-        <p>Современный флагман АвтоВАЗа нового поколения</p>
-        <span class="tag">Lada</span>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/2004_BMW_530i_%28E60%29_sedan_%282015-08-10%29_01.jpg/320px-2004_BMW_530i_%28E60%29_sedan_%282015-08-10%29_01.jpg" alt="BMW E39" loading="lazy" width="320" height="150">
+      <div class="article-body">
+        <h3>BMW 5 Series E39</h3>
+        <p>Один из лучших BMW в истории — надёжность и управляемость</p>
+        <span class="article-tag">BMW</span>
+      </div>
+    </div>
+    <div class="article-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Lada_Vesta_SW_Cross.jpg/320px-Lada_Vesta_SW_Cross.jpg" alt="Lada Vesta" loading="lazy" width="320" height="150">
+      <div class="article-body">
+        <h3>Lada Vesta SW Cross</h3>
+        <p>Современный универсал АвтоВАЗа для российских дорог</p>
+        <span class="article-tag">Lada</span>
       </div>
     </div>
   </div>
 </section>
+
 <footer>
-  <p>Autobase &copy; 2026 — База знаний об автомобилях</p>
+  <p>Autobase &copy; 2026 — База знаний об автомобилях и моторах</p>
 </footer>
+
 <script>
-function doSearch(){
-  const q=document.getElementById('searchInput').value.trim().toLowerCase();
-  if(q.includes('lada')||q.includes('ваз')||q.includes('niva')||q.includes('нива')||q.includes('priora')||q.includes('приора')||q.includes('vesta')||q.includes('веста')){
-    window.location.href='lada.html';
+// Все марки с логотипами (Simple Icons CDN) и странами
+const ALL_BRANDS = [
+  // Россия
+  { name: "Lada (ВАЗ)", country: "Россия", logo: "https://cdn.simpleicons.org/lada", page: "lada.html", region: "Россия/СНГ" },
+  { name: "УАЗ", country: "Россия", logo: "", page: null, region: "Россия/СНГ" },
+  { name: "ГАЗ", country: "Россия", logo: "", page: null, region: "Россия/СНГ" },
+  { name: "Москвич", country: "Россия", logo: "", page: null, region: "Россия/СНГ" },
+  // Германия
+  { name: "BMW", country: "Германия", logo: "https://cdn.simpleicons.org/bmw", page: null, region: "Германия" },
+  { name: "Mercedes-Benz", country: "Германия", logo: "https://cdn.simpleicons.org/mercedes", page: null, region: "Германия" },
+  { name: "Audi", country: "Германия", logo: "https://cdn.simpleicons.org/audi", page: null, region: "Германия" },
+  { name: "Volkswagen", country: "Германия", logo: "https://cdn.simpleicons.org/volkswagen", page: null, region: "Германия" },
+  { name: "Porsche", country: "Германия", logo: "https://cdn.simpleicons.org/porsche", page: null, region: "Германия" },
+  { name: "Opel", country: "Германия", logo: "https://cdn.simpleicons.org/opel", page: null, region: "Германия" },
+  // Япония
+  { name: "Toyota", country: "Япония", logo: "https://cdn.simpleicons.org/toyota", page: null, region: "Япония" },
+  { name: "Honda", country: "Япония", logo: "https://cdn.simpleicons.org/honda", page: null, region: "Япония" },
+  { name: "Nissan", country: "Япония", logo: "https://cdn.simpleicons.org/nissan", page: null, region: "Япония" },
+  { name: "Mazda", country: "Япония", logo: "https://cdn.simpleicons.org/mazda", page: null, region: "Япония" },
+  { name: "Mitsubishi", country: "Япония", logo: "https://cdn.simpleicons.org/mitsubishi", page: null, region: "Япония" },
+  { name: "Subaru", country: "Япония", logo: "https://cdn.simpleicons.org/subaru", page: null, region: "Япония" },
+  { name: "Suzuki", country: "Япония", logo: "https://cdn.simpleicons.org/suzuki", page: null, region: "Япония" },
+  { name: "Lexus", country: "Япония", logo: "https://cdn.simpleicons.org/lexus", page: null, region: "Япония" },
+  { name: "Infiniti", country: "Япония", logo: "", page: null, region: "Япония" },
+  { name: "Acura", country: "Япония", logo: "", page: null, region: "Япония" },
+  { name: "Daihatsu", country: "Япония", logo: "", page: null, region: "Япония" },
+  { name: "Isuzu", country: "Япония", logo: "", page: null, region: "Япония" },
+  // Корея
+  { name: "Hyundai", country: "Корея", logo: "https://cdn.simpleicons.org/hyundai", page: null, region: "Корея" },
+  { name: "Kia", country: "Корея", logo: "https://cdn.simpleicons.org/kia", page: null, region: "Корея" },
+  { name: "Genesis", country: "Корея", logo: "", page: null, region: "Корея" },
+  { name: "SsangYong", country: "Корея", logo: "", page: null, region: "Корея" },
+  { name: "Daewoo", country: "Корея", logo: "", page: null, region: "Корея" },
+  // Китай
+  { name: "Chery", country: "Китай", logo: "", page: null, region: "Китай" },
+  { name: "Geely", country: "Китай", logo: "https://cdn.simpleicons.org/geely", page: null, region: "Китай" },
+  { name: "Haval", country: "Китай", logo: "", page: null, region: "Китай" },
+  { name: "BYD", country: "Китай", logo: "https://cdn.simpleicons.org/byd", page: null, region: "Китай" },
+  { name: "Great Wall", country: "Китай", logo: "", page: null, region: "Китай" },
+  { name: "JAC", country: "Китай", logo: "", page: null, region: "Китай" },
+  { name: "Changan", country: "Китай", logo: "", page: null, region: "Китай" },
+  { name: "DFSK / Dongfeng", country: "Китай", logo: "", page: null, region: "Китай" },
+  { name: "Exeed", country: "Китай", logo: "", page: null, region: "Китай" },
+  { name: "Omoda", country: "Китай", logo: "", page: null, region: "Китай" },
+  // Швеция
+  { name: "Volvo", country: "Швеция", logo: "https://cdn.simpleicons.org/volvo", page: null, region: "Швеция/Франция" },
+  { name: "Saab", country: "Швеция", logo: "", page: null, region: "Швеция/Франция" },
+  // Франция
+  { name: "Renault", country: "Франция", logo: "https://cdn.simpleicons.org/renault", page: null, region: "Швеция/Франция" },
+  { name: "Peugeot", country: "Франция", logo: "https://cdn.simpleicons.org/peugeot", page: null, region: "Швеция/Франция" },
+  { name: "Citroën", country: "Франция", logo: "https://cdn.simpleicons.org/citroen", page: null, region: "Швеция/Франция" },
+  // США
+  { name: "Ford", country: "США", logo: "https://cdn.simpleicons.org/ford", page: null, region: "США" },
+  { name: "Chevrolet", country: "США", logo: "https://cdn.simpleicons.org/chevrolet", page: null, region: "США" },
+  { name: "Jeep", country: "США", logo: "https://cdn.simpleicons.org/jeep", page: null, region: "США" },
+  { name: "Dodge", country: "США", logo: "https://cdn.simpleicons.org/dodge", page: null, region: "США" },
+  { name: "Cadillac", country: "США", logo: "https://cdn.simpleicons.org/cadillac", page: null, region: "США" },
+  { name: "Buick", country: "США", logo: "", page: null, region: "США" },
+  { name: "Tesla", country: "США", logo: "https://cdn.simpleicons.org/tesla", page: null, region: "США" },
+  { name: "Lincoln", country: "США", logo: "", page: null, region: "США" },
+  // Великобритания
+  { name: "Land Rover", country: "Великобритания", logo: "https://cdn.simpleicons.org/landrover", page: null, region: "Великобритания" },
+  { name: "Jaguar", country: "Великобритания", logo: "https://cdn.simpleicons.org/jaguar", page: null, region: "Великобритания" },
+  { name: "Range Rover", country: "Великобритания", logo: "", page: null, region: "Великобритания" },
+  { name: "MINI", country: "Великобритания", logo: "https://cdn.simpleicons.org/mini", page: null, region: "Великобритания" },
+  { name: "Rolls-Royce", country: "Великобритания", logo: "", page: null, region: "Великобритания" },
+  { name: "Bentley", country: "Великобритания", logo: "", page: null, region: "Великобритания" },
+  // Италия
+  { name: "Fiat", country: "Италия", logo: "https://cdn.simpleicons.org/fiat", page: null, region: "Италия" },
+  { name: "Alfa Romeo", country: "Италия", logo: "https://cdn.simpleicons.org/alfaromeo", page: null, region: "Италия" },
+  { name: "Ferrari", country: "Италия", logo: "https://cdn.simpleicons.org/ferrari", page: null, region: "Италия" },
+  { name: "Lamborghini", country: "Италия", logo: "https://cdn.simpleicons.org/lamborghini", page: null, region: "Италия" },
+  { name: "Maserati", country: "Италия", logo: "https://cdn.simpleicons.org/maserati", page: null, region: "Италия" },
+];
+
+// Показ марок в сетке (первые 12 известных с логотипами)
+const FEATURED = ["Lada (ВАЗ)","BMW","Mercedes-Benz","Audi","Volkswagen","Toyota","Volvo","Hyundai","Kia","Chery","Ford","Subaru"];
+const grid = document.getElementById('brandsGrid');
+FEATURED.forEach(name => {
+  const b = ALL_BRANDS.find(x => x.name === name);
+  if (!b) return;
+  const card = document.createElement(b.page ? 'a' : 'div');
+  if (b.page) card.href = b.page;
+  card.className = 'brand-card';
+  card.innerHTML = b.logo
+    ? '<img src="' + b.logo + '/ffffff" alt="' + b.name + '" width="48" height="32" loading="lazy"><h3>' + b.name + '</h3><p>' + b.country + '</p>'
+    : '<div style="height:32px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:800;color:var(--color-text-faint);">' + b.name[0] + '</div><h3>' + b.name + '</h3><p>' + b.country + '</p>';
+  grid.appendChild(card);
+});
+
+// DROPDOWN логика
+const input = document.getElementById('searchInput');
+const dropdown = document.getElementById('dropdown');
+let selectedIdx = -1;
+let filtered = [];
+
+function buildDropdown(query) {
+  query = query.trim().toLowerCase();
+  dropdown.innerHTML = '';
+  selectedIdx = -1;
+
+  if (!query) {
+    // Показываем все группированные по региону
+    const regions = {};
+    ALL_BRANDS.forEach(b => {
+      if (!regions[b.region]) regions[b.region] = [];
+      regions[b.region].push(b);
+    });
+    filtered = ALL_BRANDS;
+    Object.entries(regions).forEach(([region, brands]) => {
+      const lbl = document.createElement('div');
+      lbl.className = 'dropdown-group-label';
+      lbl.textContent = region;
+      dropdown.appendChild(lbl);
+      brands.forEach((b, i) => addItem(b));
+    });
   } else {
-    alert('Статья по запросу "'+document.getElementById('searchInput').value+'" скоро появится в базе!');
+    filtered = ALL_BRANDS.filter(b =>
+      b.name.toLowerCase().includes(query) || b.country.toLowerCase().includes(query)
+    );
+    if (filtered.length === 0) {
+      dropdown.innerHTML = '<div class="dropdown-no-results">Марка не найдена — страница появится позже</div>';
+    } else {
+      filtered.forEach(b => addItem(b));
+    }
+  }
+
+  dropdown.classList.add('visible');
+}
+
+function addItem(b) {
+  const item = document.createElement('div');
+  item.className = 'dropdown-item';
+  const imgHtml = b.logo
+    ? '<img src="' + b.logo + '/ffffff" alt="' + b.name + '" width="28" height="20" loading="lazy">'
+    : '<div style="width:28px;height:20px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--color-text-faint);">' + b.name[0] + '</div>';
+  item.innerHTML = imgHtml + '<span>' + b.name + '</span><small>' + b.country + '</small>';
+  item.addEventListener('click', () => {
+    input.value = b.name;
+    closeDropdown();
+    if (b.page) window.location.href = b.page;
+    else alert('Раздел «' + b.name + '» в разработке. Скоро появится!');
+  });
+  dropdown.appendChild(item);
+}
+
+function closeDropdown() {
+  dropdown.classList.remove('visible');
+  selectedIdx = -1;
+}
+
+input.addEventListener('input', () => buildDropdown(input.value));
+input.addEventListener('focus', () => buildDropdown(input.value));
+
+input.addEventListener('keydown', e => {
+  const items = dropdown.querySelectorAll('.dropdown-item');
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    selectedIdx = Math.min(selectedIdx + 1, items.length - 1);
+    items.forEach((el, i) => el.classList.toggle('active', i === selectedIdx));
+    items[selectedIdx]?.scrollIntoView({ block: 'nearest' });
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    selectedIdx = Math.max(selectedIdx - 1, -1);
+    items.forEach((el, i) => el.classList.toggle('active', i === selectedIdx));
+  } else if (e.key === 'Enter') {
+    if (selectedIdx >= 0 && items[selectedIdx]) {
+      items[selectedIdx].click();
+    } else {
+      doSearch();
+    }
+  } else if (e.key === 'Escape') {
+    closeDropdown();
+  }
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-input-wrap')) closeDropdown();
+});
+
+function doSearch() {
+  const q = input.value.trim().toLowerCase();
+  const brand = ALL_BRANDS.find(b => b.name.toLowerCase().includes(q) || q.includes(b.name.toLowerCase()));
+  if (brand && brand.page) {
+    window.location.href = brand.page;
+  } else if (brand) {
+    alert('Раздел «' + brand.name + '» скоро появится в базе!');
+  } else if (q.includes('lada') || q.includes('ваз') || q.includes('niva') || q.includes('нива') || q.includes('vesta') || q.includes('веста')) {
+    window.location.href = 'lada.html';
+  } else if (q) {
+    alert('Статья по запросу "' + input.value + '" скоро появится в базе!');
   }
 }
-document.getElementById('searchInput').addEventListener('keypress',function(e){
-  if(e.key==='Enter') doSearch();
-});
 </script>
 </body>
 </html>
