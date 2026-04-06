@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autobase — История автомобилей</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0f0f0f;color:#e0e0e0}
+a{color:inherit;text-decoration:none}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 60px;background:#161616;border-bottom:1px solid #2a2a2a;position:sticky;top:0;z-index:100}
+.logo{font-size:24px;font-weight:800;color:#fff;letter-spacing:-1px}span.accent{color:#e63946}
+nav a{margin-left:30px;color:#aaa;font-size:14px;transition:.2s}nav a:hover{color:#fff}
+.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px;text-align:center;background:linear-gradient(180deg,#161616 0%,#0f0f0f 100%)}
+.hero h1{font-size:52px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
+.hero p{font-size:18px;color:#888;margin-bottom:40px;max-width:560px}
+.search-box{display:flex;gap:12px;width:100%;max-width:600px}
+.search-box input{flex:1;padding:16px 24px;font-size:16px;border-radius:12px;border:2px solid #2a2a2a;background:#1a1a1a;color:#fff;outline:none;transition:.2s}
+.search-box input:focus{border-color:#e63946}
+.search-box button{padding:16px 28px;background:#e63946;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s}
+.search-box button:hover{background:#c1121f}
+.hints{margin-top:14px;font-size:13px;color:#555}
+.section{padding:60px}
+.section-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:30px;padding-bottom:12px;border-bottom:1px solid #2a2a2a}
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.brand-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:.2s}
+.brand-card:hover{border-color:#e63946;transform:translateY(-2px)}
+.brand-card img{width:60px;height:60px;object-fit:contain;margin-bottom:12px;filter:brightness(0.9)}
+.brand-card h3{font-size:16px;font-weight:700;color:#fff}
+.brand-card p{font-size:12px;color:#666;margin-top:4px}
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.article-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s}
+.article-card:hover{border-color:#e63946;transform:translateY(-2px)}
+.article-card img{width:100%;height:160px;object-fit:cover}
+.article-card-body{padding:18px}
+.article-card-body h3{font-size:17px;font-weight:700;color:#fff;margin-bottom:6px}
+.article-card-body p{font-size:13px;color:#666;line-height:1.5}
+.tag{display:inline-block;padding:3px 10px;background:#2a2a2a;border-radius:20px;font-size:11px;color:#888;margin-top:10px}
+footer{padding:40px 60px;border-top:1px solid #2a2a2a;text-align:center;color:#444;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Auto<span class="accent">base</span></div>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="#brands">Марки</a>
+    <a href="#popular">Популярное</a>
+    <a href="#">О проекте</a>
+  </nav>
+</header>
+<section class="hero">
+  <h1>История каждого<br>автомобиля</h1>
+  <p>Найди статью по нужной машине — история, поколения, моторы, болячки и обслуживание</p>
+  <div class="search-box">
+    <input type="text" placeholder="Например: Lada Niva, BMW E39, Volvo XC70..." id="searchInput">
+    <button onclick="doSearch()">Найти</button>
+  </div>
+  <p class="hints">Примеры: Lada Vesta, BMW E39, Volvo XC70, Mercedes W211</p>
+</section>
+<section class="section" id="brands">
+  <div class="section-title">Марки автомобилей</div>
+  <div class="brands-grid">
+    <a href="lada.html" class="brand-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Lada_logo.svg/200px-Lada_logo.svg.png" alt="Lada">
+      <h3>Lada</h3>
+      <p>АвтоВАЗ · Россия</p>
+    </a>
+    <div class="brand-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/200px-BMW.svg.png" alt="BMW">
+      <h3>BMW</h3>
+      <p>Bayerische · Германия</p>
+    </div>
+    <div class="brand-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Volvo-Iron-Mark.svg/200px-Volvo-Iron-Mark.svg.png" alt="Volvo">
+      <h3>Volvo</h3>
+      <p>Volvo Cars · Швеция</p>
+    </div>
+    <div class="brand-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/200px-Mercedes-Logo.svg.png" alt="Mercedes">
+      <h3>Mercedes-Benz</h3>
+      <p>Daimler · Германия</p>
+    </div>
+    <div class="brand-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/200px-Audi-Logo_2016.svg.png" alt="Audi">
+      <h3>Audi</h3>
+      <p>Volkswagen Group · Германия</p>
+    </div>
+    <div class="brand-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Toyota_loho.svg/200px-Toyota_loho.svg.png" alt="Toyota">
+      <h3>Toyota</h3>
+      <p>Toyota Motor · Япония</p>
+    </div>
+  </div>
+</section>
+<section class="section" id="popular">
+  <div class="section-title">Популярные статьи</div>
+  <div class="articles-grid">
+    <a href="lada.html" class="article-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/2021_Lada_Niva_Legend_3-door_%28facelift%2C_Russia%29%2C_front_8.21.40.jpg/320px-2021_Lada_Niva_Legend_3-door_%28facelift%2C_Russia%29%2C_front_8.21.40.jpg" alt="Lada Niva">
+      <div class="article-card-body">
+        <h3>Lada Niva</h3>
+        <p>Легендарный советский внедорожник, покоривший весь мир</p>
+        <span class="tag">Lada</span>
+      </div>
+    </a>
+    <div class="article-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/2004_BMW_530i_%28E60%29_sedan_%282015-08-10%29_01.jpg/320px-2004_BMW_530i_%28E60%29_sedan_%282015-08-10%29_01.jpg" alt="BMW E39">
+      <div class="article-card-body">
+        <h3>BMW 5 Series E39</h3>
+        <p>Один из лучших BMW в истории — элегантность и надёжность</p>
+        <span class="tag">BMW</span>
+      </div>
+    </div>
+    <div class="article-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Volvo_XC70_%282008%29_001.jpg/320px-Volvo_XC70_%282008%29_001.jpg" alt="Volvo XC70">
+      <div class="article-card-body">
+        <h3>Volvo XC70</h3>
+        <p>Универсал повышенной проходимости из Швеции</p>
+        <span class="tag">Volvo</span>
+      </div>
+    </div>
+    <div class="article-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Lada_Vesta_SW_Cross.jpg/320px-Lada_Vesta_SW_Cross.jpg" alt="Lada Vesta">
+      <div class="article-card-body">
+        <h3>Lada Vesta</h3>
+        <p>Современный флагман АвтоВАЗа нового поколения</p>
+        <span class="tag">Lada</span>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>Autobase &copy; 2026 — База знаний об автомобилях</p>
+</footer>
+<script>
+function doSearch(){
+  const q=document.getElementById('searchInput').value.trim().toLowerCase();
+  if(q.includes('lada')||q.includes('ваз')||q.includes('niva')||q.includes('нива')||q.includes('priora')||q.includes('приора')||q.includes('vesta')||q.includes('веста')){
+    window.location.href='lada.html';
+  } else {
+    alert('Статья по запросу "'+document.getElementById('searchInput').value+'" скоро появится в базе!');
+  }
+}
+document.getElementById('searchInput').addEventListener('keypress',function(e){
+  if(e.key==='Enter') doSearch();
+});
+</script>
+</body>
+</html>
