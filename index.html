@@ -121,7 +121,7 @@
       border-radius: 0;
     }
     .dropdown-item:hover, .dropdown-item.active { background: var(--color-surface-offset); }
-    .dropdown-item img { width: 28px; height: 20px; object-fit: contain; filter: brightness(0.85); }
+    .dropdown-item img { width: 28px; height: 20px; object-fit: contain; filter: brightness(0.92); }
     .dropdown-item span { font-size: var(--text-sm); color: var(--color-text); }
     .dropdown-item small { font-size: var(--text-xs); color: var(--color-text-faint); margin-left: auto; }
     .dropdown-no-results { padding: var(--space-4); text-align: center; color: var(--color-text-muted); font-size: var(--text-sm); }
@@ -140,7 +140,33 @@
       transition: border-color var(--transition-interactive), transform var(--transition-interactive), box-shadow var(--transition-interactive);
     }
     .brand-card:hover { border-color: var(--color-primary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .brand-card img { width: 48px; height: 32px; object-fit: contain; margin: 0 auto var(--space-2); filter: brightness(0.85); }
+    .brand-media {
+      width: 56px;
+      height: 40px;
+      margin: 0 auto var(--space-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-media img {
+      width: 48px;
+      height: 32px;
+      object-fit: contain;
+      filter: brightness(0.95);
+    }
+    .brand-fallback {
+      width: 48px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      background: var(--color-surface-offset);
+      color: var(--color-text-muted);
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 auto;
+    }
     .brand-card h3 { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
     .brand-card p { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-1); }
 
@@ -269,34 +295,55 @@ function getBrandLogo(brand) {
     return BRAND_LOGOS[brand.name];
   }
   if (brand.logo) {
-    return brand.logo.includes('/ffffff') ? brand.logo : brand.logo + '/ffffff';
+    return brand.logo;
   }
   return null;
+}
+
+function renderBrandMedia(brand, size) {
+  const logoUrl = getBrandLogo(brand);
+  const width = size === 'small' ? 28 : 48;
+  const height = size === 'small' ? 20 : 32;
+  const fallbackStyle = size === 'small'
+    ? 'width:28px;height:20px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--color-text-faint);'
+    : 'width:48px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--color-surface-offset);font-size:18px;font-weight:700;color:var(--color-text-muted);margin:0 auto;';
+
+  if (!logoUrl) {
+    return '<div style="' + fallbackStyle + '">' + brand.name.charAt(0) + '</div>';
+  }
+
+  return '<img src="' + logoUrl + '" alt="' + brand.name + '" width="' + width + '" height="' + height + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<div style=&quot;' + fallbackStyle.replace(/"/g, '&quot;') + '&quot;>' + brand.name.charAt(0) + '</div>\'">';
 }
 
 ALL_BRANDS
   .slice()
   .sort((a, b) => a.name.localeCompare(b.name, 'ru'))
-  .forEach(b => {
-    const card = document.createElement(b.page ? 'a' : 'div');
-    if (b.page) card.href = b.page;
-
-    const logoUrl = getBrandLogo(b);
-
-    card.innerHTML = logoUrl
-      ? '<img src="' + logoUrl + '" alt="' + b.name + '" width="48" height="32" loading="lazy" onerror="this.style.display=\'none\'; this.previousElementSibling.style.display=\'flex\';">' +
-        '<div class="brand-fallback" style="display:none;height:32px;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:700;color:#666;">' + b.name.charAt(0) + '</div>' +
-        '<h3>' + b.name + '</h3>' +
-        '<p>' + b.country + '</p>'
-      : '<div class="brand-fallback" style="height:32px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:700;color:#666;">' +
-          b.name.charAt(0) +
-        '</div>' +
-        '<h3>' + b.name + '</h3>' +
-        '<p>' + b.country + '</p>';
-
+  .forEach(brand => {
+    const card = document.createElement(brand.page ? 'a' : 'div');
+    if (brand.page) card.href = brand.page;
     card.className = 'brand-card';
+    card.innerHTML =
+      '<div class="brand-media">' + renderBrandMedia(brand, 'large') + '</div>' +
+      '<h3>' + brand.name + '</h3>' +
+      '<p>' + brand.country + '</p>';
     grid.appendChild(card);
   });
+
+function addItem(brand) {
+  const item = document.createElement('div');
+  item.className = 'dropdown-item';
+  item.innerHTML = renderBrandMedia(brand, 'small') + '<span>' + brand.name + '</span><small>' + brand.country + '</small>';
+  item.addEventListener('click', () => {
+    input.value = brand.name;
+    closeDropdown();
+    if (brand.page) {
+      window.location.href = brand.page;
+    } else {
+      alert('Раздел «' + brand.name + '» в разработке. Скоро появится!');
+    }
+  });
+  dropdown.appendChild(item);
+}
 
 function buildDropdown(query) {
   query = query.trim().toLowerCase();
@@ -305,63 +352,37 @@ function buildDropdown(query) {
 
   if (!query) {
     const regions = {};
-    ALL_BRANDS.forEach(b => {
-      if (!regions[b.region]) regions[b.region] = [];
-      regions[b.region].push(b);
+    ALL_BRANDS.forEach(brand => {
+      if (!regions[brand.region]) regions[brand.region] = [];
+      regions[brand.region].push(brand);
     });
 
-    filtered = ALL_BRANDS;
+    filtered = ALL_BRANDS.slice();
 
     Object.entries(regions).forEach(([region, brands]) => {
       const lbl = document.createElement('div');
       lbl.className = 'dropdown-group-label';
       lbl.textContent = region;
       dropdown.appendChild(lbl);
-
       brands
         .slice()
         .sort((a, b) => a.name.localeCompare(b.name, 'ru'))
-        .forEach(b => addItem(b));
+        .forEach(addItem);
     });
   } else {
-    filtered = ALL_BRANDS.filter(b =>
-      b.name.toLowerCase().includes(query) ||
-      b.country.toLowerCase().includes(query)
+    filtered = ALL_BRANDS.filter(brand =>
+      brand.name.toLowerCase().includes(query) ||
+      brand.country.toLowerCase().includes(query)
     );
 
     if (filtered.length === 0) {
       dropdown.innerHTML = '<div class="dropdown-no-results">Марка не найдена — страница появится позже</div>';
     } else {
-      filtered.forEach(b => addItem(b));
+      filtered.forEach(addItem);
     }
   }
 
   dropdown.classList.add('visible');
-}
-
-function addItem(b) {
-  const item = document.createElement('div');
-  item.className = 'dropdown-item';
-
-  const logoUrl = getBrandLogo(b);
-
-  const imgHtml = logoUrl
-    ? '<img src="' + logoUrl + '" alt="' + b.name + '" width="28" height="20" loading="lazy" onerror="this.outerHTML=\'<div style=&quot;width:28px;height:20px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--color-text-faint);&quot;>' + b.name[0] + '</div>\'">'
-    : '<div style="width:28px;height:20px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--color-text-faint);">' + b.name[0] + '</div>';
-
-  item.innerHTML = imgHtml + '<span>' + b.name + '</span><small>' + b.country + '</small>';
-
-  item.addEventListener('click', () => {
-    input.value = b.name;
-    closeDropdown();
-    if (b.page) {
-      window.location.href = b.page;
-    } else {
-      alert('Раздел «' + b.name + '» в разработке. Скоро появится!');
-    }
-  });
-
-  dropdown.appendChild(item);
 }
 
 function closeDropdown() {
@@ -374,7 +395,6 @@ input.addEventListener('focus', () => buildDropdown(input.value));
 
 input.addEventListener('keydown', e => {
   const items = dropdown.querySelectorAll('.dropdown-item');
-
   if (e.key === 'ArrowDown') {
     e.preventDefault();
     selectedIdx = Math.min(selectedIdx + 1, items.length - 1);
@@ -401,19 +421,12 @@ document.addEventListener('click', e => {
 
 function doSearch() {
   const q = input.value.trim().toLowerCase();
-
-  const brand = ALL_BRANDS.find(b =>
-    b.name.toLowerCase().includes(q) || q.includes(b.name.toLowerCase())
-  );
-
+  const brand = ALL_BRANDS.find(b => b.name.toLowerCase().includes(q) || q.includes(b.name.toLowerCase()));
   if (brand && brand.page) {
     window.location.href = brand.page;
   } else if (brand) {
     alert('Раздел «' + brand.name + '» скоро появится в базе!');
-  } else if (
-    q.includes('lada') || q.includes('ваз') || q.includes('niva') ||
-    q.includes('нива') || q.includes('vesta') || q.includes('веста')
-  ) {
+  } else if (q.includes('lada') || q.includes('ваз') || q.includes('niva') || q.includes('нива') || q.includes('vesta') || q.includes('веста')) {
     window.location.href = 'lada.html';
   } else if (q) {
     alert('Статья по запросу "' + input.value + '" скоро появится в базе!');
