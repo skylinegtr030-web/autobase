@@ -47,7 +47,6 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; height: auto; }
 
-    /* HEADER */
     header {
       display: flex; align-items: center; justify-content: space-between;
       padding: var(--space-4) var(--space-8);
@@ -61,7 +60,6 @@
     nav a { font-size: var(--text-sm); color: var(--color-text-muted); transition: color var(--transition-interactive); }
     nav a:hover { color: var(--color-text); }
 
-    /* HERO */
     .hero {
       display: flex; flex-direction: column; align-items: center;
       justify-content: center; padding: clamp(var(--space-12), 8vw, var(--space-16)) var(--space-4);
@@ -73,7 +71,6 @@
     .hero h1 em { font-style: normal; color: var(--color-primary); }
     .hero p { font-size: var(--text-base); color: var(--color-text-muted); margin-bottom: var(--space-8); max-width: 520px; }
 
-    /* SEARCH BLOCK */
     .search-wrap { position: relative; width: 100%; max-width: 620px; }
     .search-row { display: flex; gap: var(--space-2); }
     .search-input-wrap { position: relative; flex: 1; }
@@ -98,7 +95,6 @@
     .search-btn:hover { background: var(--color-primary-hover); }
     .search-btn:active { transform: scale(0.97); }
 
-    /* DROPDOWN */
     #dropdown {
       position: absolute; top: calc(100% + var(--space-2)); left: 0; right: 0;
       background: var(--color-surface-2);
@@ -130,7 +126,6 @@
     .dropdown-item small { font-size: var(--text-xs); color: var(--color-text-faint); margin-left: auto; }
     .dropdown-no-results { padding: var(--space-4); text-align: center; color: var(--color-text-muted); font-size: var(--text-sm); }
 
-    /* BRANDS SECTION */
     .section { padding: clamp(var(--space-8), 5vw, var(--space-12)) clamp(var(--space-4), 5vw, var(--space-8)); }
     .section-header { display: flex; align-items: baseline; gap: var(--space-4); margin-bottom: var(--space-6); }
     .section-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-text); }
@@ -149,7 +144,6 @@
     .brand-card h3 { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
     .brand-card p { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-1); }
 
-    /* POPULAR ARTICLES */
     .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-4); }
     .article-card {
       background: var(--color-surface);
@@ -167,7 +161,6 @@
 
     footer { padding: var(--space-8); border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-faint); font-size: var(--text-sm); }
 
-    /* SCROLLBAR */
     #dropdown::-webkit-scrollbar { width: 6px; }
     #dropdown::-webkit-scrollbar-track { background: transparent; }
     #dropdown::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: var(--radius-full); }
@@ -261,61 +254,81 @@
 <footer>
   <p>Autobase &copy; 2026 — База знаний об автомобилях и моторах</p>
 </footer>
+
 <script src="brands.js"></script>
 <script src="brand-logos.js"></script>
 <script>
-// Все марки с логотипами (Simple Icons CDN) и странами
-// Показ марок в сетке (первые 12 известных с логотипами)
-const FEATURED = ["Lada (ВАЗ)","BMW","Mercedes-Benz","Audi","Volkswagen","Toyota","Volvo","Hyundai","Kia","Chery","Ford","Subaru"];
 const grid = document.getElementById('brandsGrid');
+const input = document.getElementById('searchInput');
+const dropdown = document.getElementById('dropdown');
+let selectedIdx = -1;
+let filtered = [];
+
+function getBrandLogo(brand) {
+  if (typeof BRAND_LOGOS !== 'undefined' && BRAND_LOGOS[brand.name]) {
+    return BRAND_LOGOS[brand.name];
+  }
+  if (brand.logo) {
+    return brand.logo.includes('/ffffff') ? brand.logo : brand.logo + '/ffffff';
+  }
+  return null;
+}
+
 ALL_BRANDS
   .slice()
   .sort((a, b) => a.name.localeCompare(b.name, 'ru'))
   .forEach(b => {
-  const card = document.createElement(b.page ? 'a' : 'div');
-  if (b.page) card.href = b.page;
-      const logoUrl = BRAND_LOGOS && BRAND_LOGOS[b.name] ? BRAND_LOGOS[b.name] : null;
+    const card = document.createElement(b.page ? 'a' : 'div');
+    if (b.page) card.href = b.page;
+
+    const logoUrl = getBrandLogo(b);
 
     card.innerHTML = logoUrl
-      ? '<img src="' + logoUrl + '" alt="' + b.name + '" width="48" height="32" loading="lazy">' +
+      ? '<img src="' + logoUrl + '" alt="' + b.name + '" width="48" height="32" loading="lazy" onerror="this.style.display=\'none\'; this.previousElementSibling.style.display=\'flex\';">' +
+        '<div class="brand-fallback" style="display:none;height:32px;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:700;color:#666;">' + b.name.charAt(0) + '</div>' +
         '<h3>' + b.name + '</h3>' +
         '<p>' + b.country + '</p>'
-      : '<div style="height:32px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:700;color:#666;">' +
+      : '<div class="brand-fallback" style="height:32px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px;font-weight:700;color:#666;">' +
           b.name.charAt(0) +
         '</div>' +
         '<h3>' + b.name + '</h3>' +
         '<p>' + b.country + '</p>';
-  card.className = 'brand-card';
-  grid.appendChild(card);
-});
-      b.name.charAt(0) +
-    '</div>' +
-    '<h3>' + b.name + '</h3>' +
-    '<p>' + b.country + '</p>';
+
+    card.className = 'brand-card';
+    grid.appendChild(card);
+  });
+
 function buildDropdown(query) {
   query = query.trim().toLowerCase();
   dropdown.innerHTML = '';
   selectedIdx = -1;
 
   if (!query) {
-    // Показываем все группированные по региону
     const regions = {};
     ALL_BRANDS.forEach(b => {
       if (!regions[b.region]) regions[b.region] = [];
       regions[b.region].push(b);
     });
+
     filtered = ALL_BRANDS;
+
     Object.entries(regions).forEach(([region, brands]) => {
       const lbl = document.createElement('div');
       lbl.className = 'dropdown-group-label';
       lbl.textContent = region;
       dropdown.appendChild(lbl);
-      brands.forEach((b, i) => addItem(b));
+
+      brands
+        .slice()
+        .sort((a, b) => a.name.localeCompare(b.name, 'ru'))
+        .forEach(b => addItem(b));
     });
   } else {
     filtered = ALL_BRANDS.filter(b =>
-      b.name.toLowerCase().includes(query) || b.country.toLowerCase().includes(query)
+      b.name.toLowerCase().includes(query) ||
+      b.country.toLowerCase().includes(query)
     );
+
     if (filtered.length === 0) {
       dropdown.innerHTML = '<div class="dropdown-no-results">Марка не найдена — страница появится позже</div>';
     } else {
@@ -329,16 +342,25 @@ function buildDropdown(query) {
 function addItem(b) {
   const item = document.createElement('div');
   item.className = 'dropdown-item';
-  const imgHtml = b.logo
-    ? '<img src="' + b.logo + '/ffffff" alt="' + b.name + '" width="28" height="20" loading="lazy">'
+
+  const logoUrl = getBrandLogo(b);
+
+  const imgHtml = logoUrl
+    ? '<img src="' + logoUrl + '" alt="' + b.name + '" width="28" height="20" loading="lazy" onerror="this.outerHTML=\'<div style=&quot;width:28px;height:20px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--color-text-faint);&quot;>' + b.name[0] + '</div>\'">'
     : '<div style="width:28px;height:20px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--color-text-faint);">' + b.name[0] + '</div>';
+
   item.innerHTML = imgHtml + '<span>' + b.name + '</span><small>' + b.country + '</small>';
+
   item.addEventListener('click', () => {
     input.value = b.name;
     closeDropdown();
-    if (b.page) window.location.href = b.page;
-    else alert('Раздел «' + b.name + '» в разработке. Скоро появится!');
+    if (b.page) {
+      window.location.href = b.page;
+    } else {
+      alert('Раздел «' + b.name + '» в разработке. Скоро появится!');
+    }
   });
+
   dropdown.appendChild(item);
 }
 
@@ -352,6 +374,7 @@ input.addEventListener('focus', () => buildDropdown(input.value));
 
 input.addEventListener('keydown', e => {
   const items = dropdown.querySelectorAll('.dropdown-item');
+
   if (e.key === 'ArrowDown') {
     e.preventDefault();
     selectedIdx = Math.min(selectedIdx + 1, items.length - 1);
@@ -378,12 +401,19 @@ document.addEventListener('click', e => {
 
 function doSearch() {
   const q = input.value.trim().toLowerCase();
-  const brand = ALL_BRANDS.find(b => b.name.toLowerCase().includes(q) || q.includes(b.name.toLowerCase()));
+
+  const brand = ALL_BRANDS.find(b =>
+    b.name.toLowerCase().includes(q) || q.includes(b.name.toLowerCase())
+  );
+
   if (brand && brand.page) {
     window.location.href = brand.page;
   } else if (brand) {
     alert('Раздел «' + brand.name + '» скоро появится в базе!');
-  } else if (q.includes('lada') || q.includes('ваз') || q.includes('niva') || q.includes('нива') || q.includes('vesta') || q.includes('веста')) {
+  } else if (
+    q.includes('lada') || q.includes('ваз') || q.includes('niva') ||
+    q.includes('нива') || q.includes('vesta') || q.includes('веста')
+  ) {
     window.location.href = 'lada.html';
   } else if (q) {
     alert('Статья по запросу "' + input.value + '" скоро появится в базе!');
