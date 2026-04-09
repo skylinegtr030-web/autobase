@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
+  <!-- Simplified boat shape -->
+  <path d="M 30 60 L 40 40 L 50 30 L 100 30 L 150 30 L 160 40 L 170 60 L 100 70 Z" fill="#0066cc" stroke="#003366" stroke-width="1.5"/>
+  <!-- Sail -->
+  <path d="M 100 30 L 100 10 L 120 30 Z" fill="#0066cc" stroke="#003366" stroke-width="1"/>
+  <!-- Text LADA -->
+  <text x="100" y="90" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#0066cc">LADA</text>
+</svg>
