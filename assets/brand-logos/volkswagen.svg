@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="48" fill="#001e50" />
+  <circle cx="50" cy="50" r="48" fill="none" stroke="#ffffff" stroke-width="2" />
+
+  <!-- VW logo paths (simplified flat white) -->
+  <!-- Left W -->
+  <path d="M50 50 L38 24 L32 24 L44 55 Z" fill="#ffffff" />
+  <path d="M50 50 L62 24 L68 24 L56 55 Z" fill="#ffffff" />
+  <!-- Center V -->
+  <path d="M38 24 L50 50 L62 24 L57 24 L50 42 L43 24 Z" fill="#ffffff" />
+  <!-- Bottom W legs -->
+  <path d="M44 55 L38 72 L50 72 Z" fill="#ffffff" />
+  <path d="M56 55 L62 72 L50 72 Z" fill="#ffffff" />
+
+  <!-- Inner ring -->
+  <circle cx="50" cy="50" r="35" fill="none" stroke="#ffffff" stroke-width="2" />
+</svg>
