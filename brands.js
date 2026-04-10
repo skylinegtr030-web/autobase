@@ -1,5 +1,5 @@
 const ALL_BRANDS = [
-  { name: 'Abarth', country: 'Италия', region: 'Италия', status: 'active' , logo: 'https://cdn.simpleicons.org/abarth' },
+  { name: 'Abarth', country: 'Италия', region: 'Италия', status: 'active' , logo: 'https://cdn.simpleicons.org/abarth' , page: 'abarth.html'},
   { name: 'Acura', country: 'Япония', region: 'Япония', status: 'active' , logo: 'https://cdn.simpleicons.org/acura' },
   { name: 'Aixam', country: 'Франция', region: 'Швеция/Франция', status: 'active' },
   { name: 'Alfa Romeo', country: 'Италия', region: 'Италия', status: 'active' , logo: 'https://cdn.simpleicons.org/alfaromeo' },
