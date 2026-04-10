@@ -210,6 +210,13 @@ nav a:hover {
   transition: border-color var(--transition-interactive), transform var(--transition-interactive);
 }
 
+a.model-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 .model-card:hover {
   border-color: var(--color-primary);
   transform: translateY(-2px);
