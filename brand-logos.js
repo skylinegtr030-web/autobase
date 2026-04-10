@@ -1,167 +1,153 @@
 // Карта логотипов брендов для Autobase
 // Ключ должен совпадать с полем name в brands.js
+const CDN = "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/thumb/";
+
 const BRAND_LOGOS = {
   // === A ===
-  "Abarth": "https://cdn.simpleicons.org/abarth/white",
-  "Acura": "https://cdn.simpleicons.org/acura/white",
-  "Alfa Romeo": "https://cdn.simpleicons.org/alfaromeo/white",
-  "Alpina": "https://cdn.simpleicons.org/alpina/white",
-  "Alpine": "https://cdn.simpleicons.org/alpine/white",
-  "Aston Martin": "https://cdn.simpleicons.org/astonmartin/white",
-  "Audi": "https://cdn.simpleicons.org/audi/white",
+  "Abarth": CDN + "abarth.png",
+  "Acura": CDN + "acura.png",
+  "Alfa Romeo": CDN + "alfa-romeo.png",
+  "Alpina": CDN + "alpina.png",
+  "Alpine": CDN + "alpine.png",
+  "Aston Martin": CDN + "aston-martin.png",
+  "Audi": CDN + "audi.png",
 
   // === B ===
-  "BAIC": "https://cdn.simpleicons.org/baic/white",
-  "Bentley": "https://cdn.simpleicons.org/bentley/white",
-  "BMW": "https://cdn.simpleicons.org/bmw/white",
-  "Bugatti": "https://cdn.simpleicons.org/bugatti/white",
-  "Buick": "https://cdn.simpleicons.org/buick/white",
-  "BYD": "https://cdn.simpleicons.org/byd/white",
+  "BAIC": CDN + "baic.png",
+  "Bentley": CDN + "bentley.png",
+  "BMW": CDN + "bmw.png",
+  "Bugatti": CDN + "bugatti.png",
+  "Buick": CDN + "buick.png",
+  "BYD": CDN + "byd.png",
 
   // === C ===
-  "Cadillac": "https://cdn.simpleicons.org/cadillac/white",
-  "Chery": "https://cdn.simpleicons.org/chery/white",
-  "Chevrolet": "https://cdn.simpleicons.org/chevrolet/white",
-  "Chrysler": "https://cdn.simpleicons.org/chrysler/white",
-  "Citroen": "https://cdn.simpleicons.org/citroen/white",
-  "Cupra": "https://cdn.simpleicons.org/cupra/white",
+  "Cadillac": CDN + "cadillac.png",
+  "Chery": CDN + "chery.png",
+  "Chevrolet": CDN + "chevrolet.png",
+  "Chrysler": CDN + "chrysler.png",
+  "Citroen": CDN + "citroen.png",
+  "Cupra": CDN + "cupra.png",
 
   // === D ===
-  "Dacia": "https://cdn.simpleicons.org/dacia/white",
-  "Daihatsu": "https://cdn.simpleicons.org/daihatsu/white",
-  "Datsun": "https://cdn.simpleicons.org/datsun/white",
-  "Dodge": "https://cdn.simpleicons.org/dodge/white",
-  "DS": "https://cdn.simpleicons.org/dsautomobiles/white",
-  "DS Automobiles": "https://cdn.simpleicons.org/dsautomobiles/white",
+  "Dacia": CDN + "dacia.png",
+  "Daihatsu": CDN + "daihatsu.png",
+  "Datsun": CDN + "datsun.png",
+  "Dodge": CDN + "dodge.png",
+  "DS": CDN + "ds.png",
+  "DS Automobiles": CDN + "ds.png",
 
   // === F ===
-  "Ferrari": "https://cdn.simpleicons.org/ferrari/white",
-  "Fiat": "https://cdn.simpleicons.org/fiat/white",
-  "Fisker": "https://cdn.simpleicons.org/fisker/white",
-  "Ford": "https://cdn.simpleicons.org/ford/white",
+  "Ferrari": CDN + "ferrari.png",
+  "Fiat": CDN + "fiat.png",
+  "Fisker": CDN + "fisker.png",
+  "Ford": CDN + "ford.png",
 
   // === G ===
-  "Geely": "https://cdn.simpleicons.org/geely/white",
-  "Genesis": "https://cdn.simpleicons.org/genesis/white",
-  "GMC": "https://cdn.simpleicons.org/gmc/white",
-  "Great Wall": "https://cdn.simpleicons.org/greatwall/white",
+  "Geely": CDN + "geely.png",
+  "Genesis": CDN + "genesis.png",
+  "GMC": CDN + "gmc.png",
+  "Great Wall": CDN + "great-wall.png",
 
   // === H ===
-  "Haval": "https://cdn.simpleicons.org/haval/white",
-  "Honda": "https://cdn.simpleicons.org/honda/white",
-  "Hongqi": "https://cdn.simpleicons.org/hongqi/white",
-  "Hummer": "https://cdn.simpleicons.org/hummer/white",
-  "Hyundai": "https://cdn.simpleicons.org/hyundai/white",
+  "Haval": CDN + "haval.png",
+  "Honda": CDN + "honda.png",
+  "Hongqi": CDN + "hongqi.png",
+  "Hummer": CDN + "hummer.png",
+  "Hyundai": CDN + "hyundai.png",
 
   // === I ===
-  "Ineos": "https://cdn.simpleicons.org/ineos/white",
-  "Infiniti": "https://cdn.simpleicons.org/infiniti/white",
-  "Isuzu": "https://cdn.simpleicons.org/isuzu/white",
+  "Ineos": CDN + "ineos.png",
+  "Infiniti": CDN + "infiniti.png",
+  "Isuzu": CDN + "isuzu.png",
 
   // === J ===
-  "Jaguar": "https://cdn.simpleicons.org/jaguar/white",
-  "Jeep": "https://cdn.simpleicons.org/jeep/white",
-  "Jetour": "https://cdn.simpleicons.org/jetour/white",
+  "Jaguar": CDN + "jaguar.png",
+  "Jeep": CDN + "jeep.png",
+  "Jetour": CDN + "jetour.png",
 
   // === K ===
-  "Kia": "https://cdn.simpleicons.org/kia/white",
-  "Koenigsegg": "https://cdn.simpleicons.org/koenigsegg/white",
+  "Kia": CDN + "kia.png",
+  "Koenigsegg": CDN + "koenigsegg.png",
 
   // === L ===
-  "Lada": "https://cdn.simpleicons.org/lada/white",
-  "Lada (ВАЗ)": "https://cdn.simpleicons.org/lada/white",
-  "Lamborghini": "https://cdn.simpleicons.org/lamborghini/white",
-  "Lancia": "https://cdn.simpleicons.org/lancia/white",
-  "Land Rover": "https://cdn.simpleicons.org/landrover/white",
-  "Lexus": "https://cdn.simpleicons.org/lexus/white",
-  "Li Auto": "https://cdn.simpleicons.org/liauto/white",
-  "Lincoln": "https://cdn.simpleicons.org/lincoln/white",
-  "Lotus": "https://cdn.simpleicons.org/lotus/white",
-  "Lucid": "https://cdn.simpleicons.org/lucid/white",
-  "Lynk & Co": "https://cdn.simpleicons.org/lynkco/white",
+  "Lada": CDN + "lada.png",
+  "Lada (ВАЗ)": CDN + "lada.png",
+  "Lamborghini": CDN + "lamborghini.png",
+  "Lancia": CDN + "lancia.png",
+  "Land Rover": CDN + "land-rover.png",
+  "Lexus": CDN + "lexus.png",
+  "Li Auto": CDN + "li-auto.png",
+  "Lincoln": CDN + "lincoln.png",
+  "Lotus": CDN + "lotus.png",
+  "Lucid": CDN + "lucid.png",
+  "Lynk & Co": CDN + "lynk-and-co.png",
 
   // === M ===
-  "Mahindra": "https://cdn.simpleicons.org/mahindra/white",
-  "Maruti Suzuki": "https://cdn.simpleicons.org/marutisuzuki/white",
-  "Maserati": "https://cdn.simpleicons.org/maserati/white",
-  "Maybach": "https://cdn.simpleicons.org/maybach/white",
-  "Mazda": "https://cdn.simpleicons.org/mazda/white",
-  "McLaren": "https://cdn.simpleicons.org/mclaren/white",
-  "Mercedes-Benz": "https://cdn.simpleicons.org/mercedes/white",
-  "MG": "https://cdn.simpleicons.org/mg/white",
-  "Mini": "https://cdn.simpleicons.org/mini/white",
-  "MINI": "https://cdn.simpleicons.org/mini/white",
-  "Mitsubishi": "https://cdn.simpleicons.org/mitsubishi/white",
-  "Mitsuoka": "https://cdn.simpleicons.org/mitsuoka/white",
+  "Mahindra": CDN + "mahindra.png",
+  "Maruti Suzuki": CDN + "maruti-suzuki.png",
+  "Maserati": CDN + "maserati.png",
+  "Maybach": CDN + "maybach.png",
+  "Mazda": CDN + "mazda.png",
+  "McLaren": CDN + "mclaren.png",
+  "Mercedes-Benz": CDN + "mercedes-benz.png",
+  "MG": CDN + "mg.png",
+  "Mini": CDN + "mini.png",
+  "MINI": CDN + "mini.png",
+  "Mitsubishi": CDN + "mitsubishi.png",
 
   // === N ===
-  "Nio": "https://cdn.simpleicons.org/nio/white",
-  "NIO": "https://cdn.simpleicons.org/nio/white",
-  "Nissan": "https://cdn.simpleicons.org/nissan/white",
-  "Noble": "https://cdn.simpleicons.org/noble/white",
+  "Nio": CDN + "nio.png",
+  "NIO": CDN + "nio.png",
+  "Nissan": CDN + "nissan.png",
 
   // === O ===
-  "Omoda": "https://cdn.simpleicons.org/omoda/white",
-  "OMODA": "https://cdn.simpleicons.org/omoda/white",
-  "Opel": "https://cdn.simpleicons.org/opel/white",
+  "Omoda": CDN + "omoda.png",
+  "OMODA": CDN + "omoda.png",
+  "Opel": CDN + "opel.png",
 
   // === P ===
-  "Pagani": "https://cdn.simpleicons.org/pagani/white",
-  "Perodua": "https://cdn.simpleicons.org/perodua/white",
-  "Peugeot": "https://cdn.simpleicons.org/peugeot/white",
-  "Pininfarina": "https://cdn.simpleicons.org/pininfarina/white",
-  "Polestar": "https://cdn.simpleicons.org/polestar/white",
-  "Pontiac": "https://cdn.simpleicons.org/pontiac/white",
-  "Porsche": "https://cdn.simpleicons.org/porsche/white",
-  "Proton": "https://cdn.simpleicons.org/proton/white",
+  "Pagani": CDN + "pagani.png",
+  "Peugeot": CDN + "peugeot.png",
+  "Polestar": CDN + "polestar.png",
+  "Pontiac": CDN + "pontiac.png",
+  "Porsche": CDN + "porsche.png",
+  "Proton": CDN + "proton.png",
 
   // === R ===
-  "RAM": "https://cdn.simpleicons.org/ram/white",
-  "Ram": "https://cdn.simpleicons.org/ram/white",
-  "Renault": "https://cdn.simpleicons.org/renault/white",
-  "Rimac": "https://cdn.simpleicons.org/rimac/white",
-  "Rivian": "https://cdn.simpleicons.org/rivian/white",
-  "Rolls-Royce": "https://cdn.simpleicons.org/rollsroyce/white",
+  "RAM": CDN + "ram.png",
+  "Ram": CDN + "ram.png",
+  "Renault": CDN + "renault.png",
+  "Rivian": CDN + "rivian.png",
+  "Rolls-Royce": CDN + "rolls-royce.png",
 
   // === S ===
-  "Saab": "https://cdn.simpleicons.org/saab/white",
-  "Saleen": "https://cdn.simpleicons.org/saleen/white",
-  "Scania": "https://cdn.simpleicons.org/scania/white",
-  "Seat": "https://cdn.simpleicons.org/seat/white",
-  "SEAT": "https://cdn.simpleicons.org/seat/white",
-  "Skoda": "https://cdn.simpleicons.org/skoda/white",
-  "Škoda": "https://cdn.simpleicons.org/skoda/white",
-  "Smart": "https://cdn.simpleicons.org/smart/white",
-  "Subaru": "https://cdn.simpleicons.org/subaru/white",
-  "Suzuki": "https://cdn.simpleicons.org/suzuki/white",
+  "Saab": CDN + "saab.png",
+  "Scania": CDN + "scania.png",
+  "Seat": CDN + "seat.png",
+  "SEAT": CDN + "seat.png",
+  "Skoda": CDN + "skoda.png",
+  "Škoda": CDN + "skoda.png",
+  "Smart": CDN + "smart.png",
+  "Subaru": CDN + "subaru.png",
+  "Suzuki": CDN + "suzuki.png",
 
   // === T ===
-  "Tank": "https://cdn.simpleicons.org/tank/white",
-  "Tata": "https://cdn.simpleicons.org/tata/white",
-  "Tesla": "https://cdn.simpleicons.org/tesla/white",
-  "Toyota": "https://cdn.simpleicons.org/toyota/white",
-  "TVR": "https://cdn.simpleicons.org/tvr/white",
+  "Tata": CDN + "tata.png",
+  "Tesla": CDN + "tesla.png",
+  "Toyota": CDN + "toyota.png",
 
   // === V ===
-  "Vauxhall": "https://cdn.simpleicons.org/vauxhall/white",
-  "Venturi": "https://cdn.simpleicons.org/venturi/white",
-  "VinFast": "https://cdn.simpleicons.org/vinfast/white",
-  "Volkswagen": "https://cdn.simpleicons.org/volkswagen/white",
-  "Volvo": "https://cdn.simpleicons.org/volvo/white",
-  "Voyah": "https://cdn.simpleicons.org/voyah/white",
-
-  // === W ===
-  "Wey": "https://cdn.simpleicons.org/wey/white",
-  "WEY": "https://cdn.simpleicons.org/wey/white",
+  "VinFast": CDN + "vinfast.png",
+  "Volkswagen": CDN + "volkswagen.png",
+  "Volvo": CDN + "volvo.png",
 
   // === X ===
-  "XPeng": "https://cdn.simpleicons.org/xpeng/white",
-  "XPENG": "https://cdn.simpleicons.org/xpeng/white",
-  "Xiaomi Auto": "https://cdn.simpleicons.org/xiaomi/white",
+  "XPeng": CDN + "xpeng.png",
+  "XPENG": CDN + "xpeng.png",
 
   // === Z ===
-  "Zeekr": "https://cdn.simpleicons.org/zeekr/white",
-  "ZEEKR": "https://cdn.simpleicons.org/zeekr/white"
+  "Zeekr": CDN + "zeekr.png",
+  "ZEEKR": CDN + "zeekr.png"
 };
 
 window.BRAND_LOGOS = BRAND_LOGOS;
