@@ -197,7 +197,7 @@ nav a:hover {
 
 .models-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
   margin: var(--space-6) 0;
 }
